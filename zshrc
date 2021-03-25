@@ -52,3 +52,13 @@ export PATH="$HOME/.serverless/bin:$PATH"
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
+# Launch mailcatcher
+# a="$(lsof -i:1025)"
+
+#if [[ "${#a}" -gt 0 ]]
+#then
+ # echo 'Mailcatcher is running'
+#else
+ # mailcatcher --http-ip=0.0.0.0
+#fi

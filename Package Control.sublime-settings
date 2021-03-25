@@ -24,6 +24,6 @@
 		"SCSS",
 		"SideBarEnhancements",
 		"SublimeLinter",
-		"SublimeLinter-rubocop"
-	]
+		"SublimeLinter-rubocop",
+	],
 }

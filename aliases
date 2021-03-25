@@ -41,6 +41,76 @@ switch_project () {
   fi
 }
 
+fs () {
+  DELETE_JOBS=0
+  KEEP_JOBS=0
+  START_JOBS=0
+  INVALID_OPTION=''
+  DISPLAY_HELP=0
+
+  while getopts ":khj" opt; do
+    case $opt in
+      h)
+        DISPLAY_HELP=1
+        ;;
+      k)
+        KEEP_JOBS=1
+        ;;
+      j)
+        START_JOBS=1
+        DELETE_JOBS=1
+        ;;
+      \?)
+        INVALID_OPTION=$OPTARG
+        ;;
+    esac
+  done
+  shift "$(( OPTIND - 1 ))"
+  if [[ ${INVALID_OPTION} ]]; then
+    echo "Invalid option: -${INVALID_OPTION}"
+    return
+  fi
+
+  if [ ${DISPLAY_HELP} = 1 ]; then
+    echo 'fs' >&2
+    echo '  chech ngrok variable'
+    echo '  start rails server'
+    echo '  start webpack-dev-server'
+    echo ''
+    echo 'Options'
+    echo '  -k   keep jobs on redis'
+    echo '  -j   launch foreman with jobs'
+    return
+  fi
+
+  ngrok_export_variable
+
+  if [ ${DELETE_JOBS} = 1 ] && [ ${KEEP_JOBS} = 0 ]; then
+    echo 'Delete jobs';
+    redis-cli FLUSHALL;
+  elif [ ${START_JOBS} = 1 ]; then
+    echo 'Keep jobs';
+  fi
+
+  if [ ${START_JOBS} = 1 ]; then
+    foreman start;
+  else
+    foreman start -c webpack=1,web=1
+  fi
+}
+
+switch_sound_output () {
+  CURRENT_PROFILE=$(pacmd list-cards | grep "active profile" | cut -d ' ' -f 3-)
+
+  if [ "$CURRENT_PROFILE" = "<output:analog-stereo+input:analog-stereo>" ]; then
+    pacmd set-card-profile 0 "output:hdmi-stereo-extra1+input:analog-stereo"
+    echo 'Sound on hdmi'
+  else
+    pacmd set-card-profile 0 "output:analog-stereo+input:analog-stereo"
+    echo 'Sound on laptop'
+  fi
+}
+
 # Shortcuts for coding in the terminal
 alias gfix="git commit -a --amend --no-edit"
 alias gst="git status"
@@ -50,9 +120,8 @@ alias gwip="git commit -m 'WIP'"
 alias di_ips="docker inspect --format='{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)"
 alias db_hard_reset="rails db:drop db:create db:migrate db:seed"
 alias rc="rails c"
-alias fs="ngrok_export_variable ; foreman start -c webpack=1,web=1"
-alias fs_with_jobs="ngrok_export_variable ; redis-cli FLUSHALL && foreman start"
 alias gsync="git_synchronyze"
 alias op="git_open_folder"
 alias stt="stt_folder"
 alias switch="switch_project"
+alias swso="switch_sound_output"

@@ -1,0 +1,89 @@
+[global_config]
+  broadcast_default = off
+  geometry_hinting = True
+  inactive_color_offset = 0.851851851852
+  suppress_multiple_term_dialog = True
+  tab_position = bottom
+  title_hide_sizetext = True
+  title_inactive_bg_color = "#fcaf3e"
+  title_receive_bg_color = "#f57900"
+  title_transmit_bg_color = "#73d216"
+  title_transmit_fg_color = "#000000"
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = 111bd95d-8f7d-48ca-9392-d958457145f1
+      last_active_window = True
+      maximised = True
+      order = 0
+      parent = ""
+      position = 59:27
+      size = 1861, 1029
+      title = thibault@thibault-AsusVivo: ~/code/thibault173/ruby/ipm
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = 928
+      ratio = 0.5
+      type = HPaned
+    [[[child2]]]
+      order = 0
+      parent = child1
+      position = 512
+      ratio = 0.5
+      type = VPaned
+    [[[child5]]]
+      order = 1
+      parent = child1
+      position = 512
+      ratio = 0.5
+      type = VPaned
+    [[[terminal3]]]
+      order = 0
+      parent = child2
+      profile = default
+      type = Terminal
+      uuid = 111bd95d-8f7d-48ca-9392-d958457145f1
+    [[[terminal4]]]
+      order = 1
+      parent = child2
+      profile = default
+      type = Terminal
+      uuid = 19a7d84a-7d49-4069-9fd6-3bfdfb847a9b
+    [[[terminal6]]]
+      order = 0
+      parent = child5
+      profile = sensors
+      type = Terminal
+      uuid = 84d05ed7-0323-4f3b-83f3-63746f7ea277
+    [[[terminal7]]]
+      order = 1
+      parent = child5
+      profile = mailcatcher
+      type = Terminal
+      uuid = 8d12b624-ddfc-4674-a0df-07425e5dd7b7
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#002b36"
+    cursor_color = "#aaaaaa"
+    foreground_color = "#839496"
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    scrollback_infinite = True
+  [[mailcatcher]]
+    cursor_color = "#aaaaaa"
+    custom_command = exec /usr/bin/env /home/thibault/.rbenv/shims/mailcatcher --http-ip=0.0.0.0; zsh
+    login_shell = True
+    use_custom_command = True
+  [[sensors]]
+    background_color = "#002b36"
+    cursor_color = "#aaaaaa"
+    custom_command = sensors; zsh
+    exit_action = hold
+    foreground_color = "#839496"
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    scrollback_infinite = True
+    use_custom_command = True

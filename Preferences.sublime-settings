@@ -1,6 +1,6 @@
 {
 	"always_show_minimap_viewport": false,
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.sublime-color-scheme",
+	"color_scheme": "Packages/Color Scheme - Default/Breakers.sublime-color-scheme",
 	"detect_indentation": false,
 	"draw_white_space": true,
 	"ensure_newline_at_eof_on_save": true,
@@ -25,7 +25,7 @@
 	"hot_exit": false,
 	"ignored_packages":
 	[
-		"Vintage"
+		"Vintage",
 	],
 	"remember_open_files": false,
 	"rulers":
@@ -39,5 +39,5 @@
 	"trim_trailing_white_space_on_save": true,
 	"update_check": false,
 	"use_tab_stops": true,
-	"wordWrap": false
+	"wordWrap": false,
 }
