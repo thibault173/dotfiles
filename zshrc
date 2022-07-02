@@ -62,3 +62,4 @@ export PATH="$HOME/.serverless/bin:$PATH"
 #else
  # mailcatcher --http-ip=0.0.0.0
 #fi
+export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"
