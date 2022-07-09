@@ -1,0 +1,89 @@
+[global_config]
+  geometry_hinting = True
+  tab_position = bottom
+  broadcast_default = off
+  title_hide_sizetext = True
+  title_transmit_fg_color = "#000000"
+  title_transmit_bg_color = "#73d216"
+  title_receive_bg_color = "#f57900"
+  title_inactive_bg_color = "#fcaf3e"
+  inactive_color_offset = 0.851851851852
+  suppress_multiple_term_dialog = True
+[keybindings]
+[profiles]
+  [[default]]
+    background_color = "#002b36"
+    cursor_color = "#aaaaaa"
+    foreground_color = "#839496"
+    scrollback_infinite = True
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+  [[mailcatcher]]
+    cursor_color = "#aaaaaa"
+    login_shell = True
+    use_custom_command = True
+    custom_command = exec /usr/bin/env /home/thibault/.rbenv/shims/mailcatcher --http-ip=0.0.0.0; zsh
+  [[sensors]]
+    background_color = "#002b36"
+    cursor_color = "#aaaaaa"
+    foreground_color = "#839496"
+    scrollback_infinite = True
+    exit_action = hold
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    use_custom_command = True
+    custom_command = sensors; zsh
+[layouts]
+  [[default]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = 111bd95d-8f7d-48ca-9392-d958457145f1
+      last_active_window = True
+      maximised = True
+      order = 0
+      parent = ""
+      position = 59:27
+      size = 1861, 1029
+      title = thibault@thibault-AsusVivo: ~/code/thibault173/ruby/ipm
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = 928
+      ratio = 0.5
+      type = HPaned
+    [[[child2]]]
+      order = 0
+      parent = child1
+      position = 512
+      ratio = 0.5
+      type = VPaned
+    [[[child5]]]
+      order = 1
+      parent = child1
+      position = 512
+      ratio = 0.5
+      type = VPaned
+    [[[terminal3]]]
+      order = 0
+      parent = child2
+      profile = default
+      type = Terminal
+      uuid = 111bd95d-8f7d-48ca-9392-d958457145f1
+    [[[terminal4]]]
+      order = 1
+      parent = child2
+      profile = default
+      type = Terminal
+      uuid = 19a7d84a-7d49-4069-9fd6-3bfdfb847a9b
+    [[[terminal6]]]
+      order = 0
+      parent = child5
+      profile = sensors
+      type = Terminal
+      uuid = 84d05ed7-0323-4f3b-83f3-63746f7ea277
+    [[[terminal7]]]
+      order = 1
+      parent = child5
+      profile = mailcatcher
+      type = Terminal
+      uuid = 8d12b624-ddfc-4674-a0df-07425e5dd7b7
+[plugins]

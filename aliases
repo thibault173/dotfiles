@@ -1,0 +1,134 @@
+# Get External IP / Internet Speed
+alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
+alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
+
+# Quickly serve the current directory as HTTP
+alias serve='ruby -run -e httpd . -p 8000' # Or python -m SimpleHTTPServer :)
+
+## My aliases
+git_synchronyze () {
+  echo '=== git checkout master OR main ==='
+  git checkout master && echo ''
+  git checkout main && echo ''
+  echo '=== git pull origin master OR main ==='
+  git pull origin main && echo ''
+  echo '=== git sweep ==='
+  git sweep
+  echo ''
+  echo '=== git branch ==='
+  git branch
+}
+
+git_open_folder () {
+  xdg-open ..
+}
+
+ngrok_export_variable(){
+  url=`curl -s  http://localhost:4040/api/tunnels | ruby -e "require 'json' ; puts JSON.parse(ARGF.read)['tunnels'][1]['public_url'] rescue nil"`
+  if [ $url ]
+  then
+    export NGROK_URL=$url
+    echo "NGROK_URL=$NGROK_URL"
+  else
+    unset NGROK_URL
+    echo "Pas de ngrok qui tourne"
+  fi
+}
+
+fs () {
+  DELETE_JOBS=0
+  KEEP_JOBS=0
+  START_JOBS=0
+  INVALID_OPTION=''
+  DISPLAY_HELP=0
+
+  while getopts ":khj" opt; do
+    case $opt in
+      h)
+        DISPLAY_HELP=1
+        ;;
+      k)
+        KEEP_JOBS=1
+        ;;
+      j)
+        START_JOBS=1
+        DELETE_JOBS=1
+        ;;
+      \?)
+        INVALID_OPTION=$OPTARG
+        ;;
+    esac
+  done
+  shift "$(( OPTIND - 1 ))"
+  if [[ ${INVALID_OPTION} ]]; then
+    echo "Invalid option: -${INVALID_OPTION}"
+    return
+  fi
+
+  if [ ${DISPLAY_HELP} = 1 ]; then
+    echo 'fs' >&2
+    echo '  chech ngrok variable'
+    echo '  start rails server'
+    echo '  start webpack-dev-server'
+    echo ''
+    echo 'Options'
+    echo '  -k   keep jobs on redis'
+    echo '  -j   launch foreman with jobs'
+    return
+  fi
+
+  ngrok_export_variable
+
+  if [ ${DELETE_JOBS} = 1 ] && [ ${KEEP_JOBS} = 0 ]; then
+    echo 'Delete jobs';
+    redis-cli FLUSHALL;
+  elif [ ${START_JOBS} = 1 ]; then
+    echo 'Keep jobs';
+  fi
+
+  if [ ${START_JOBS} = 1 ]; then
+    foreman start;
+  else
+    foreman start -c webpack=1,web=1
+  fi
+}
+
+switch_sound_output () {
+  CURRENT_PROFILE=$(pacmd list-cards | grep "active profile" | cut -d ' ' -f 3-)
+
+  if [ "$CURRENT_PROFILE" = "<output:analog-stereo+input:analog-stereo>" ]; then
+    pacmd set-card-profile 0 "output:hdmi-stereo-extra1+input:analog-stereo"
+    echo 'Sound on hdmi'
+  else
+    pacmd set-card-profile 0 "output:analog-stereo+input:analog-stereo"
+    echo 'Sound on laptop'
+  fi
+}
+
+
+# Launch mailcatcher
+# a="$(lsof -i:1025)"
+
+#if [[ "${#a}" -gt 0 ]]
+#then
+ # echo 'Mailcatcher is running'
+#else
+ # mailcatcher --http-ip=0.0.0.0
+#fi
+
+# Shortcuts for coding in the terminal
+alias gfix="git commit -a --amend --no-edit"
+alias gst="git status"
+alias gco="git checkout"
+alias gpom="git pull origin master"
+alias gwip="git commit -m 'WIP'"
+# alias di_ips="docker inspect --format='{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)"
+alias db_hard_reset="rails db:drop db:create db:migrate db:seed"
+alias rc="rails c"
+alias gsync="git_synchronyze"
+alias op="git_open_folder"
+alias swso="switch_sound_output"
+
+# RSPEC
+alias r="bundle exec rspec --format doc"
+alias rfast="bundle exec rspec -t ~slow --order rand --format doc --profile"
