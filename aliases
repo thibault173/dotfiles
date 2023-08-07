@@ -7,10 +7,9 @@ alias serve='ruby -run -e httpd . -p 8000' # Or python -m SimpleHTTPServer :)
 
 ## My aliases
 git_synchronyze () {
-  echo '=== git checkout master OR main ==='
-  git checkout master && echo ''
+  echo '=== git checkout main ==='
   git checkout main && echo ''
-  echo '=== git pull origin master OR main ==='
+  echo '=== git pull origin main ==='
   git pull origin main && echo ''
   echo '=== git sweep ==='
   git sweep
@@ -82,6 +81,7 @@ fs () {
   if [ ${DELETE_JOBS} = 1 ] && [ ${KEEP_JOBS} = 0 ]; then
     echo 'Delete jobs';
     redis-cli FLUSHALL;
+    bundle exec rails jobs:clear;
   elif [ ${START_JOBS} = 1 ]; then
     echo 'Keep jobs';
   fi
@@ -89,7 +89,7 @@ fs () {
   if [ ${START_JOBS} = 1 ]; then
     foreman start;
   else
-    foreman start -c webpack=1,web=1
+    foreman start -c webpack=1,web=1,vue=1
   fi
 }
 
@@ -105,6 +105,22 @@ switch_sound_output () {
   fi
 }
 
+fast_opening () {
+  if [ $1 ]
+  then
+    cd "$HOME/code/thibault173/ruby/$1"
+    echo "Go to => ~/code/thibault173/ruby/$1"
+    if [ $2 ] && [ $2 = '.' ]
+    then
+      echo "Open VS for $1"
+      $(code .)
+    else
+    fi
+  else
+    cd "$HOME/code/thibault173/ruby"
+    echo "Go to => ~/code/thibault173/ruby"
+  fi
+}
 
 # Launch mailcatcher
 # a="$(lsof -i:1025)"
@@ -121,7 +137,7 @@ alias gfix="git commit -a --amend --no-edit"
 alias gst="git status"
 alias gco="git checkout"
 alias gpom="git pull origin master"
-alias gwip="git commit -m 'WIP'"
+alias gwip="git add . && git commit -m 'WIP [skip ci]'"
 # alias di_ips="docker inspect --format='{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)"
 alias db_hard_reset="rails db:drop db:create db:migrate db:seed"
 alias rc="rails c"
@@ -132,3 +148,5 @@ alias swso="switch_sound_output"
 # RSPEC
 alias r="bundle exec rspec --format doc"
 alias rfast="bundle exec rspec -t ~slow --order rand --format doc --profile"
+
+alias go="fast_opening"
