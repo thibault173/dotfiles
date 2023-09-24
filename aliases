@@ -125,6 +125,19 @@ fast_opening () {
   fi
 }
 
+rspec_with_time () {
+  start=`date`
+
+  bundle exec rspec --format doc $1
+
+  end=`date`
+  duration=`date -ud@$(($(date -ud"$end" +%s)-$(date -ud"$start" +%s))) +%T`
+
+  echo "--- Started at $start ---"
+  echo "--- Ended at $end ---"
+  echo "--- Duration : $duration ---"
+}
+
 # Launch mailcatcher
 # a="$(lsof -i:1025)"
 
@@ -151,5 +164,7 @@ alias swso="switch_sound_output"
 # RSPEC
 alias r="bundle exec rspec --format doc"
 alias rfast="bundle exec rspec -t ~slow --order rand --format doc --profile"
+alias rslow="bundle exec rspec -t slow --order rand --format doc --profile"
+alias rtime='rspec_with_time'
 
 alias go="fast_opening"

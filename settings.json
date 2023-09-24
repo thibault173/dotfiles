@@ -81,4 +81,6 @@
     "workbench.panel.defaultLocation": "right",
     "explorer.confirmDragAndDrop": false,
     "workbench.colorTheme": "Default Light Modern",
+    "security.workspace.trust.untrustedFiles": "open",
+    "terminal.integrated.env.windows": {},
 }

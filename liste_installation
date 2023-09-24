@@ -1,0 +1,49 @@
+1 - Fichiers à sauvegarder
+
+	Firefox raccourcis
+	Fichiers des clés sur les projets
+	Fichiers test*.rb sur les projets
+	Branches sur les projets
+
+	dotfiles sur git
+    - config terminator
+	mes-notes sur git
+  filezilla config
+
+2 - Pour installation sur DD vierge
+
+	Partition /boot/efi de 500Mo au début du disque
+	Partition SWAP (équivalente à RAM)
+	Partition /
+
+
+3 - Supprimable
+
+	Thunderbird
+
+4 - Après installation
+
+	Setup du wagon
+	cloner les repos des projets
+	remettre les clés et les fichiers de test
+	reconnecter git remote url
+	heroku cli
+	redis
+	ngrok
+
+	itech dock station
+
+	gnome matrix for grid workspaces (+ sudo apt install gnome-shell-extension-manager)
+	foreman gem
+	sensors
+	terminator
+	bookmarks firefox
+	extensions firefox
+	- ublock
+	- multi container
+	- lastpass
+	slack
+	ulauncher
+	sudo apt-get install chromium-chromedriver
+	filezilla
+  mailcatcher
