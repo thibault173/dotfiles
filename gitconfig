@@ -66,3 +66,8 @@
 	email = thibault.villard@gmail.com
 	name = thibault173
 	name = Thibault
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

@@ -165,6 +165,11 @@ alias swso="switch_sound_output"
 alias r="bundle exec rspec --format doc"
 alias rfast="bundle exec rspec -t ~slow --order rand --format doc --profile"
 alias rslow="bundle exec rspec -t slow --order rand --format doc --profile"
+
+# Winddle
+alias wops="bin/wops"
 alias rtime='rspec_with_time'
+alias fspec='SEED=disabled DRIVER=chrome RSPEC_RETRY_RETRY_COUNT=0 ./bin/rspec --format doc'
+alias hspec='SEED=disabled RSPEC_RETRY_RETRY_COUNT=0 ./bin/rspec --format doc'
 
 alias go="fast_opening"

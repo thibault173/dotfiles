@@ -24,26 +24,33 @@
 4 - Après installation
 
 	Setup du wagon
+
 	cloner les repos des projets
 	remettre les clés et les fichiers de test
 	reconnecter git remote url
 	heroku cli
 	redis
 	ngrok
+  gitkraken
+  pnpm install
 
 	itech dock station
 
-	gnome matrix for grid workspaces (+ sudo apt install gnome-shell-extension-manager)
+	gnome matrix for grid workspaces (+ sudo apt install gnome-shell-extension-manager) https://github.com/mzur/gnome-shell-wsmatrix
 	foreman gem
-	sensors
 	terminator
+	sensors
 	bookmarks firefox
 	extensions firefox
 	- ublock
 	- multi container
 	- lastpass
-	slack
 	ulauncher
 	sudo apt-get install chromium-chromedriver
 	filezilla
   mailcatcher
+  fond ecran
+  google chrome stable (pour faire tourner les tests capybara)
+  extension latest migration
+  okular pour lire les pdfs
+  gimp pour ?

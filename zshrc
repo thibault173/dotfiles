@@ -59,6 +59,9 @@ type -a nvm > /dev/null && load-nvmrc
 # Same for `./node_modules/.bin` and nodejs
 export PATH="./bin:./node_modules/.bin:${PATH}:/usr/local/sbin"
 
+# For hooks winddle in gitkraken
+export PATH="/home/thibault/code/thibault173/ruby/winddle/winddle/node_modules/.bin:${PATH}"
+
 # Store your own aliases in the ~/.aliases file and load the here.
 [[ -f "$HOME/.aliases" ]] && source "$HOME/.aliases"
 
@@ -79,6 +82,10 @@ export PYTHONBREAKPOINT=ipdb.set_trace
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
 # To allow install ryby versions trough open lib ssl
+
 export SSL_CERT_DIR=/etc/ssl/certs
 
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+
+# You can opt-in to activate the Ruby JIT (disabled by default). # Winddle config
+export RUBY_YJIT_ENABLE=1
